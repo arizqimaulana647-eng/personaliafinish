@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Memory Book — Story 📖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Quicksand:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #fffcf5;
+      --accent: #ff8fa3;
+      --text: #5d4037;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background-color: #d6ccc2;
+      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 15px;
+    }
+
+    /* KONTENER HALAMAN (MOBILE FIRST) */
+    .book-page {
+      width: 100%;
+      max-width: 420px;
+      min-height: 620px;
+      background: var(--paper);
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      position: relative;
+      padding: 25px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #e0d5c1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .book-page.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* FOTO PORTRAIT */
+    .photo-frame {
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 3/4.5;
+      background: white;
+      padding: 10px 10px 30px 10px;
+      box-shadow: 5px 10px 20px rgba(0,0,0,0.1);
+      position: relative;
+      margin-bottom: 25px;
+      border: 1px solid #eee;
+    }
+
+    .photo-frame::after {
+      content: "";
+      position: absolute;
+      width: 70px; height: 25px;
+      background: rgba(255, 143, 163, 0.3);
+      top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+    }
+
+    .photo-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* TYPOGRAPHY */
+    h1 { font-family: 'Sacramento', cursive; font-size: 2.5rem; margin: 0; color: var(--accent); text-align: center; }
+    h2 { font-family: 'Caveat', cursive; font-size: 1.8rem; margin: 5px 0; color: var(--text); text-align: center; }
+    
+    .story-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #666;
+      font-style: italic;
+      text-align: center;
+      margin: 0;
+      padding: 0 10px;
+    }
+
+    /* NAVIGASI */
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 20px;
+      width: 100%;
+    }
+
+    .btn {
+      flex: 1;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .btn-back { background: #d6ccc2; color: var(--text); }
+
+    .flower { position: fixed; top: -20px; pointer-events: none; z-index: 100; opacity: 0.5; }
+  </style>
+</head>
+<body>
+
+<audio id="bgm" loop>
+  <source src="badainaira.mp3" type="audio/mpeg">
+</audio>
+
+<div class="book-page active" id="p1">
+  <h1>Lembar bersama Personalia </h1>
+  <div class="photo-frame" style="margin-top: 20px;">
+    <img src="foto1.jpeg">
+  </div>
+  <h2>Hari pertama kita bertemu</h2>
+  <p class="story-text">
+    “Hari itu kita datang dengan wajah baru dan hati yang masih asing. Tak banyak kata yang terucap, hanya senyum canggung dan sapaan singkat."
+  </p>
+  <div class="nav-buttons">
+    <button class="btn" onclick="nextPage(1)">Mulai Membaca ➔</button>
+  </div>
+</div>
+
+<div class="book-page" id="p2">
+  <div class="photo-frame">
+    <img src="foto2.jpeg">
+  </div>
+  <h2>Chapter I: Momen Kebersamaan</h2>
+  <p class="story-text">
+    “Di tengah kesibukan dan rutinitas yang padat, selalu ada waktu di mana kita berkumpul, berbagi cerita, dan tertawa tanpa beban. Canda sederhana sering kali berubah menjadi tawa yang sulit dihentikan, menghapus lelah dan penat."
+  </p>
+  <div class="nav-buttons">
+    <button class="btn btn-back" onclick="nextPage(-1)">Back</button>
+    <button class="btn" onclick="nextPage(1)">Next</button>
+  </div>
+</div>
+
+<div class="book-page" id="p3">
+  <div class="photo-frame">
+    <img src="foto3.JPG">
+  </div>
+  <h2>Chapter II: Suka dan Duka</h2>
+  <p class="story-text">
+    "Tak semua hari dipenuhi tawa, ada masa lelah, kecewa, dan jatuh bangun yang harus kita hadapi bersama. Perjuangan ini mengajarkan arti kebersamaan bahwa tidak ada langkah yang terlalu berat selama dijalani bersama."
+  </p>
+  <div class="nav-buttons">
+    <button class="btn btn-back" onclick="nextPage(-1)">Back</button>
+    <button class="btn" onclick="nextPage(1)">Next</button>
+  </div>
+</div>
+
+<div class="book-page" id="p4">
+  <div class="photo-frame">
+    <img src="foto4.JPG">
+  </div>
+  <h2>Chapter III: Akhir Perjalanan</h2>
+  <p class="story-text">
+    "Senyum di akhir perjalanan ini bukan sekadar ekspresi, tapi sebuah cerita yang tersimpan dalam setiap langkah kita. Senyum ini adalah ungkapan syukur atas setiap momen dan penghargaan untuk setiap cerita."
+  </p>
+  <div class="nav-buttons">
+    <button class="btn btn-back" onclick="nextPage(-1)">Back</button>
+    <button class="btn" onclick="nextPage(1)">Next</button>
+  </div>
+</div>
+
+<div class="book-page" id="p5">
+  <div style="font-size: 4rem; margin-top: 40px;">❤️</div>
+  <h1>TERIMA KASIH</h1>
+  <p class="story-text" style="margin-top: 20px;">
+    Untuk setiap tawa, cerita, dan perjuangan yang pernah kita lalui bersama. Perpisahan ini bukan akhir, melainkan awal cerita baru.
+  </p>
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="font-family: 'Sacramento', cursive; font-size: 2.2rem; color: var(--accent);">The End.</h2>
+    <p style="font-family: 'Caveat', cursive; font-size: 1.4rem; color: #888; text-align: center;">- I will miss you and everything in it -</p>
+  </div>
+  <div class="nav-buttons">
+    <button class="btn" onclick="nextPage(1)">Ulangi Memori</button>
+  </div>
+</div>
+
+<script>
+  let current = 1;
+  const total = 5;
+  const bgm = document.getElementById('bgm');
+
+  function nextPage(step) {
+    document.getElementById(`p${current}`).classList.remove('active');
+    
+    setTimeout(() => {
+      document.getElementById(`p${current}`).style.display = 'none';
+      current += step;
+      if (current > total) current = 1;
+      if (current < 1) current = 1;
+
+      const next = document.getElementById(`p${current}`);
+      next.style.display = 'flex';
+      setTimeout(() => next.classList.add('active'), 50);
+
+      if (current === 1) {
+        bgm.pause(); bgm.currentTime = 0;
+      } else {
+        bgm.play().catch(() => {});
+      }
+    }, 500);
+  }
+
+  // Efek dekorasi berguguran
+  setInterval(() => {
+    const icons = ['🌸', '✨', '🍃', '🤍'];
+    const el = document.createElement('div');
+    el.className = 'flower';
+    el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.fontSize = Math.random() * 30 + 10 + 'px';
+    el.style.transition = 'transform 5s linear, opacity 5s linear';
+    document.body.appendChild(el);
+    setTimeout(() => {
+      el.style.transform = `translateY(110vh) rotate(360deg)`;
+      el.style.opacity = '0';
+    }, 100);
+    setTimeout(() => el.remove(), 5500);
+  }, 2000);
+</script>
+
+</body>
+</html>
